@@ -7,12 +7,15 @@ EMAIL_TO="manager@example-domain.com"
 SUBJECT="Pull Request Report"
 
 ##Ask user for details
-#read -p "Enter repository name: " REPO_NAME
-#read -p "Enter repository Owner: " OWNER
+read -p "Enter repository name: " REPO_NAME
+read -p "Enter repository Owner: " OWNER
+
+#Uncomment if you need to work with a repo that needs auth
 #read -p "Enter Auth token: " GITHUB_TOKEN
 
-REPO_NAME=UnityProyecto-SeptiembreDiciembre2023
-OWNER=reydflores
+# Uncomment if you want to hardcode user input for debug purposes
+# REPO_NAME=UnityProyecto-SeptiembreDiciembre2023
+# OWNER=reydflores
 
 API="https://api.github.com/repos/$OWNER/$REPO_NAME/pulls"
 
@@ -21,6 +24,8 @@ API="https://api.github.com/repos/$OWNER/$REPO_NAME/pulls"
 search_func() {
 
         curl -L -H  "Accept: application/vnd.github+json" "$API?state=$1&since=$2&per_page=100"
+        # Replace with the line below If you want to query a repository that requires authentication
+        # curl -L -H "Authorization: Bearer $GITHUB_TOKEN" -H  "Accept: application/vnd.github+json" "$API?state=$1&since=$2&per_page=100"
 }
 
 #Fetch PRs
