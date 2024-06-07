@@ -32,6 +32,8 @@ search_func() {
 openPR=$(search_func "open" "$last_week")
 closedPR=$(search_func "closed" "$last_week")
 
+##Change
+
 #search by date
 echo $last_week
 dateOpenPR=$(echo "$openPR"  | jq -r --arg date "$last_week" '. [] | select(.created_at > $date)' )
